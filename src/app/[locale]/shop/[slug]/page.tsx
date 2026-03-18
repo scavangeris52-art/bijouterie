@@ -96,9 +96,9 @@ export default async function ProductPage({ params }: { params: { locale: string
 
           {/* Price */}
           <div className="flex items-baseline gap-3 mb-6">
-            <span className="text-3xl font-bold text-rose-500">{formatPrice(product.price)}</span>
+            <span className="text-3xl font-bold text-rose-500">{formatPrice(Number(product.price))}</span>
             {isPromo && product.comparePrice && (
-              <span className="text-xl text-gray-400 line-through">{formatPrice(product.comparePrice)}</span>
+              <span className="text-xl text-gray-400 line-through">{formatPrice(Number(product.comparePrice))}</span>
             )}
           </div>
 

@@ -129,7 +129,7 @@ export default function ProductEditor({ productId, isNew }: ProductEditorProps) 
               ].map(({ key, label, dir }) => (
                 <div key={key}>
                   <label className={labelCls} style={labelStyle}>{label}</label>
-                  <input value={(form as Record<string, string>)[key]} onChange={(e) => set(key, e.target.value)}
+                  <input value={(form as Record<string, unknown>)[key] as string} onChange={(e) => set(key, e.target.value)}
                     dir={dir} className={inputCls} style={inputStyle} placeholder={label} />
                 </div>
               ))}
@@ -148,7 +148,7 @@ export default function ProductEditor({ productId, isNew }: ProductEditorProps) 
               ].map(({ key, label, dir }) => (
                 <div key={key}>
                   <label className={labelCls} style={labelStyle}>{label}</label>
-                  <textarea value={(form as Record<string, string>)[key]} onChange={(e) => set(key, e.target.value)}
+                  <textarea value={(form as Record<string, unknown>)[key] as string} onChange={(e) => set(key, e.target.value)}
                     dir={dir} rows={3} className={`${inputCls} resize-none`} style={inputStyle} placeholder={label} />
                 </div>
               ))}
@@ -182,7 +182,7 @@ export default function ProductEditor({ productId, isNew }: ProductEditorProps) 
               ].map(({ key, label, type }) => (
                 <div key={key}>
                   <label className={labelCls} style={labelStyle}>{label}</label>
-                  <input value={(form as Record<string, string>)[key]} onChange={(e) => set(key, e.target.value)}
+                  <input value={(form as Record<string, unknown>)[key] as string} onChange={(e) => set(key, e.target.value)}
                     type={type} min="0" className={inputCls} style={inputStyle} placeholder="0" />
                 </div>
               ))}
@@ -208,7 +208,7 @@ export default function ProductEditor({ productId, isNew }: ProductEditorProps) 
               ].map(({ key, label, ph }) => (
                 <div key={key}>
                   <label className={labelCls} style={labelStyle}>{label}</label>
-                  <input value={(form as Record<string, string>)[key]} onChange={(e) => set(key, e.target.value)}
+                  <input value={(form as Record<string, unknown>)[key] as string} onChange={(e) => set(key, e.target.value)}
                     className={inputCls} style={inputStyle} placeholder={ph} />
                 </div>
               ))}
@@ -223,7 +223,7 @@ export default function ProductEditor({ productId, isNew }: ProductEditorProps) 
               { key: "published", label: "Publié (visible sur le site)" },
             ].map(({ key, label }) => (
               <label key={key} className="flex items-center gap-3 py-2 cursor-pointer">
-                <input type="checkbox" checked={(form as Record<string, boolean>)[key]}
+                <input type="checkbox" checked={(form as Record<string, unknown>)[key] as boolean}
                   onChange={(e) => set(key, e.target.checked)} className="accent-rose-500 w-4 h-4" />
                 <span className="text-sm" style={{ color: "#c4b8d4" }}>{label}</span>
               </label>

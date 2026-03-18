@@ -102,7 +102,7 @@ export default function BlogEditor({ postId, isNew }: BlogEditorProps) {
               ].map(({ key, label, dir }) => (
                 <div key={key}>
                   <label className={labelCls} style={labelStyle}>{label}</label>
-                  <input value={(form as Record<string, string>)[key]} onChange={(e) => set(key, e.target.value)}
+                  <input value={(form as Record<string, unknown>)[key] as string} onChange={(e) => set(key, e.target.value)}
                     dir={dir} className={inputCls} style={inputStyle} placeholder={label} />
                 </div>
               ))}
@@ -121,7 +121,7 @@ export default function BlogEditor({ postId, isNew }: BlogEditorProps) {
               ].map(({ key, label, dir }) => (
                 <div key={key}>
                   <label className={labelCls} style={labelStyle}>{label}</label>
-                  <textarea value={(form as Record<string, string>)[key]} onChange={(e) => set(key, e.target.value)}
+                  <textarea value={(form as Record<string, unknown>)[key] as string} onChange={(e) => set(key, e.target.value)}
                     dir={dir} rows={3} className={`${inputCls} resize-none`} style={inputStyle} placeholder={label} />
                 </div>
               ))}
@@ -140,7 +140,7 @@ export default function BlogEditor({ postId, isNew }: BlogEditorProps) {
               ].map(({ key, label, dir }) => (
                 <div key={key}>
                   <label className={labelCls} style={labelStyle}>{label}</label>
-                  <textarea value={(form as Record<string, string>)[key]} onChange={(e) => set(key, e.target.value)}
+                  <textarea value={(form as Record<string, unknown>)[key] as string} onChange={(e) => set(key, e.target.value)}
                     dir={dir} rows={6} className={`${inputCls} resize-none`} style={inputStyle} placeholder={label} />
                 </div>
               ))}
