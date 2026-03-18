@@ -1,0 +1,816 @@
+import { useState } from "react";
+import { Download, CheckCircle, FileText, Printer } from "lucide-react";
+
+const C = { bg:"#0f0a1a", card:"#1a1230", border:"#2d2250", rose:"#e91e63", coral:"#ef6c57", white:"#fff", text:"#c4b8d4", muted:"#8878a0", success:"#66bb6a" };
+
+export default function App() {
+  const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const download = () => {
+    setLoading(true);
+    setTimeout(() => {
+      const html = buildFullDoc();
+      const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Bijouterie_Nador_Documentation.html";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      setLoading(false);
+      setDone(true);
+    }, 1500);
+  };
+
+  const sections = [
+    "Présentation du projet",
+    "Fonctionnalités client détaillées",
+    "Espace Admin — Guide ultra-détaillé",
+    "Architecture technique",
+    "Structure complète des fichiers",
+    "Schéma base de données (toutes les tables)",
+    "Installation pas à pas",
+    "Configuration .env",
+    "Guide Claude Code + VS Code",
+    "Déploiement & mise en ligne",
+    "SEO & Sécurité",
+    "Checklist de lancement",
+  ];
+
+  return (
+    <div style={{ minHeight:"100vh", background:C.bg, color:C.text, fontFamily:"Georgia,serif", display:"flex", alignItems:"center", justifyContent:"center", padding:20 }}>
+      <div style={{ maxWidth:680, width:"100%", textAlign:"center" }}>
+        <div style={{ fontSize:48, marginBottom:12 }}>💎</div>
+        <h1 style={{ fontSize:28, color:C.white, fontWeight:300, letterSpacing:"0.08em", marginBottom:6 }}>Bijouterie Nador</h1>
+        <div style={{ fontSize:12, color:C.rose, letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:36 }}>Documentation complète</div>
+
+        <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:16, padding:"36px 28px", marginBottom:20, textAlign:"left" }}>
+          <h2 style={{ fontSize:17, color:C.white, marginBottom:4, fontWeight:400, textAlign:"center" }}>Contenu du document — ~35 pages</h2>
+          <p style={{ fontSize:12, color:C.muted, textAlign:"center", marginBottom:24, lineHeight:1.5 }}>
+            Documentation technique, guide admin détaillé, fichiers source, Claude Code et checklist.
+          </p>
+
+          <div style={{ marginBottom:28 }}>
+            {sections.map((s, i) => (
+              <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"9px 12px", borderBottom:`1px solid ${C.border}33`, fontSize:13 }}>
+                <span style={{ width:26, height:26, borderRadius:"50%", background:`linear-gradient(135deg,${C.rose},${C.coral})`, color:C.white, display:"flex", alignItems:"center", justifyContent:"center", fontSize:10, fontWeight:700, flexShrink:0 }}>{i+1}</span>
+                <span>{s}</span>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign:"center" }}>
+            <button onClick={download} disabled={loading} style={{ display:"inline-flex", alignItems:"center", gap:10, padding:"15px 36px", background: loading ? C.border : `linear-gradient(135deg,${C.rose},${C.coral})`, color:C.white, border:"none", borderRadius:10, cursor: loading ? "wait" : "pointer", fontSize:14, fontFamily:"inherit", fontWeight:600, letterSpacing:"0.06em", boxShadow: loading ? "none" : "0 6px 24px rgba(233,30,99,0.35)" }}>
+              {loading ? <><div style={{ width:18, height:18, border:"2px solid rgba(255,255,255,0.3)", borderTopColor:"#fff", borderRadius:"50%", animation:"spin 0.8s linear infinite" }}/> Génération...</> : <><Download size={18}/> Télécharger la documentation</>}
+            </button>
+
+            {done && (
+              <div style={{ marginTop:20 }}>
+                <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8, color:C.success, fontSize:14, fontWeight:600, marginBottom:12 }}>
+                  <CheckCircle size={18}/> Fichier téléchargé !
+                </div>
+                <div style={{ background:`${C.border}44`, borderRadius:10, padding:20, textAlign:"left", fontSize:12, color:C.text, lineHeight:1.7 }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:10, color:C.white, fontSize:13, fontWeight:600 }}>
+                    <Printer size={16} color={C.rose}/> Pour obtenir le PDF :
+                  </div>
+                  <div style={{ paddingLeft:8 }}>
+                    1. Ouvre le fichier <strong style={{ color:C.rose }}>Bijouterie_Nador_Documentation.html</strong> dans Chrome ou Firefox<br/>
+                    2. Appuie sur <strong style={{ color:C.white }}>Ctrl + P</strong> (ou Cmd + P sur Mac)<br/>
+                    3. Dans "Destination", choisis <strong style={{ color:C.white }}>"Enregistrer en PDF"</strong><br/>
+                    4. Clique sur <strong style={{ color:C.white }}>Enregistrer</strong><br/>
+                    <br/>
+                    Tu obtiendras un PDF parfaitement mis en page de ~35 pages !
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <p style={{ fontSize:11, color:C.muted }}>Généré dans votre navigateur — aucune donnée envoyée.</p>
+      </div>
+      <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+    </div>
+  );
+}
+
+function buildFullDoc() {
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Bijouterie Nador - Documentation Technique Complète</title>
+<style>
+@page{size:A4;margin:20mm 18mm 22mm 18mm}
+@media print{.no-print{display:none!important}.section{page-break-before:always}.section:first-of-type{page-break-before:avoid}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,"Times New Roman",serif;font-size:11px;color:#1a1a1a;line-height:1.7;background:#fff;max-width:210mm;margin:0 auto;padding:20mm 18mm}
+h1{font-size:24px;font-weight:300;letter-spacing:.1em;color:#d81b60;margin:0 0 6px;page-break-after:avoid}
+h2{font-size:15px;font-weight:600;color:#2d1f1a;margin:20px 0 8px;border-left:3px solid #e91e63;padding-left:10px;page-break-after:avoid}
+h3{font-size:12px;font-weight:600;color:#e91e63;margin:14px 0 6px;page-break-after:avoid}
+p{margin-bottom:5px;text-align:justify}
+ul{padding-left:18px;margin-bottom:8px}
+li{margin-bottom:3px}
+.code{background:#f5f0f8;border:1px solid #e8ddf0;border-radius:4px;padding:8px 12px;font-family:"Courier New",monospace;font-size:9px;margin:6px 0 10px;white-space:pre-wrap;word-break:break-all;line-height:1.6}
+.cover{text-align:center;padding:100px 0 60px;page-break-after:always}
+.cover h1{font-size:36px;color:#e91e63;margin-bottom:8px}
+.cover .sub{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#6d5a52;margin-bottom:30px}
+.cover .line{width:60px;height:2px;background:#e91e63;margin:0 auto 30px}
+.cover .info{font-size:11px;color:#a08e85;line-height:1.8}
+.toc{page-break-after:always;padding-top:20px}
+.toc h2{border:none;padding:0;font-size:18px;margin-bottom:14px;color:#2d1f1a}
+.toc-item{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dotted #ddd;font-size:11px}
+.section{page-break-before:always;padding-top:8px}
+.table{width:100%;border-collapse:collapse;margin:8px 0 12px;font-size:10px}
+.table th{background:#f5f0f8;padding:5px 7px;text-align:left;font-weight:600;border:1px solid #e8ddf0}
+.table td{padding:4px 7px;border:1px solid #e8ddf0;vertical-align:top}
+.chk{margin:3px 0;padding-left:4px;font-size:11px}
+.footer{text-align:center;font-size:9px;color:#a08e85;margin-top:30px;padding-top:10px;border-top:1px solid #eee}
+.print-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:#e91e63;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-family:inherit;margin:20px auto;font-weight:600}
+.print-btn:hover{background:#d81b60}
+</style>
+</head>
+<body>
+
+<div class="no-print" style="text-align:center;padding:20px 0 10px;border-bottom:2px solid #e91e63;margin-bottom:30px">
+<p style="font-size:14px;color:#333;margin-bottom:10px">Pour convertir en PDF : <strong>Ctrl+P</strong> puis "Enregistrer en PDF"</p>
+<button class="print-btn" onclick="window.print()">🖨️ Imprimer / Enregistrer en PDF</button>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+<div style="font-size:48px;margin-bottom:16px">💎</div>
+<h1>BIJOUTERIE NADOR</h1>
+<div class="sub">Documentation Technique Complète</div>
+<div class="line"></div>
+<div class="info">
+Site E-Commerce de Joaillerie Artisanale<br>
+Nador, Maroc<br><br>
+Version 1.0 — Mars 2026<br><br>
+Technologies : Next.js 14 · React 18 · Tailwind CSS · Prisma · PostgreSQL<br>
+Stripe · Cloudinary · NextAuth.js · next-intl<br><br>
+Langues : Français · English · العربية · Español
+</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+<h2>📋 Table des matières</h2>
+<div class="toc-item"><span><strong>1.</strong> Présentation du projet</span></div>
+<div class="toc-item"><span><strong>2.</strong> Fonctionnalités côté client</span></div>
+<div class="toc-item"><span><strong>3.</strong> Espace Administrateur — Guide complet</span></div>
+<div class="toc-item"><span><strong>4.</strong> Architecture technique</span></div>
+<div class="toc-item"><span><strong>5.</strong> Structure des fichiers</span></div>
+<div class="toc-item"><span><strong>6.</strong> Schéma base de données</span></div>
+<div class="toc-item"><span><strong>7.</strong> Installation pas à pas</span></div>
+<div class="toc-item"><span><strong>8.</strong> Configuration des variables</span></div>
+<div class="toc-item"><span><strong>9.</strong> Guide Claude Code + VS Code</span></div>
+<div class="toc-item"><span><strong>10.</strong> Déploiement et mise en ligne</span></div>
+<div class="toc-item"><span><strong>11.</strong> SEO et référencement</span></div>
+<div class="toc-item"><span><strong>12.</strong> Sécurité</span></div>
+<div class="toc-item"><span><strong>13.</strong> Checklist de lancement</span></div>
+</div>
+
+<!-- 1. PRESENTATION -->
+<div class="section">
+<h1>1. Présentation du projet</h1>
+<p>Bijouterie Nador est un site e-commerce professionnel conçu pour une bijouterie artisanale basée à <strong>Nador, Maroc</strong>. Le site permet de vendre des bijoux en ligne avec un design luxueux et moderne, inspiré des grandes marques de joaillerie internationales (Cartier, Mejuri, Atelier Amaya, Luzaka).</p>
+<h3>Objectifs</h3>
+<ul>
+<li>Créer une vitrine en ligne professionnelle pour la vente de bijoux</li>
+<li>Offrir une expérience utilisateur premium et adaptée au mobile</li>
+<li>Permettre une gestion facile via un espace administrateur complet</li>
+<li>Optimiser le référencement Google pour attirer du trafic organique</li>
+<li>Supporter 4 langues pour toucher une clientèle internationale</li>
+</ul>
+<h3>Palette de couleurs</h3>
+<p>Rose vif (#e91e63), corail (#ef6c57), saumon (#ff8a80) sur fond crème (#fff8f6). Tons chauds, élégants, féminins sans être flashy.</p>
+<h3>Langues supportées</h3>
+<table class="table">
+<tr><th>Langue</th><th>Code</th><th>Direction</th></tr>
+<tr><td>Français</td><td>fr</td><td>LTR →</td></tr>
+<tr><td>Anglais</td><td>en</td><td>LTR →</td></tr>
+<tr><td>Arabe</td><td>ar</td><td>RTL ←</td></tr>
+<tr><td>Espagnol</td><td>es</td><td>LTR →</td></tr>
+</table>
+<p>Le support RTL pour l'arabe est intégré nativement : navigation, textes et mise en page s'inversent automatiquement.</p>
+</div>
+
+<!-- 2. FONCTIONNALITES CLIENT -->
+<div class="section">
+<h1>2. Fonctionnalités côté client</h1>
+
+<h2>2.1 Page d'accueil</h2>
+<ul>
+<li><strong>Bandeau promotionnel</strong> : Barre colorée gradient rose→corail en haut (ex: "Livraison offerte dès 1500 MAD"). Fermable par l'utilisateur avec un bouton ×.</li>
+<li><strong>Hero banner</strong> : Section plein écran avec image de fond, overlay sombre, titre accrocheur, sous-titre, badge "Nouvelle collection" et bouton CTA gradient rose.</li>
+<li><strong>Collections</strong> : Grille de 4 catégories (Bagues, Colliers, Bracelets, Boucles d'oreilles) avec photos plein cadre, overlay gradient rose et effet de zoom au survol.</li>
+<li><strong>Produits vedettes</strong> : Grille de 4 produits marqués "featured" avec cartes interactives (zoom image, bouton favoris, ajout panier au survol).</li>
+<li><strong>Avis clients</strong> : 3 témoignages avec étoiles dorées, avatar avec initiale, texte en italique et nom de l'auteur.</li>
+<li><strong>Blog</strong> : 3 derniers articles publiés avec image de couverture, date en rose, titre et extrait.</li>
+<li><strong>Newsletter</strong> : Section sombre avec champ email et bouton "S'inscrire" gradient rose.</li>
+</ul>
+
+<h2>2.2 Page Boutique</h2>
+<ul>
+<li>Filtres par catégorie en "pills" arrondies (border-radius 20px). L'actif a un gradient rose.</li>
+<li>Grille responsive : 4 colonnes desktop, 2 tablette, 1 mobile</li>
+<li>Carte produit : image aspect 4/5, badge "Promo" gradient rose, bouton cœur favoris, bouton ajout panier au survol</li>
+<li>Seuls les produits "published: true" dans l'admin sont visibles</li>
+</ul>
+
+<h2>2.3 Page Produit</h2>
+<ul>
+<li>Fil d'Ariane : Accueil → Boutique → Nom du produit (le nom est en rose)</li>
+<li>Layout 2 colonnes : galerie à gauche, infos à droite</li>
+<li>Galerie photos avec image principale et miniatures cliquables (bordure rose quand sélectionnée)</li>
+<li>Nom du produit (26px, léger), prix en rose gras, ancien prix barré si promo</li>
+<li>Étoiles dorées et nombre d'avis si applicable</li>
+<li>Description multilingue complète</li>
+<li>Tableau spécifications : Matériau, Pierre, Poids, Disponibilité (point vert)</li>
+<li>Sélecteur quantité (+/−) avec boutons fond saumon clair</li>
+<li>Bouton "Ajouter au panier" (gradient rose, ombre rose) + bouton cœur favoris</li>
+<li>Section avis clients du produit avec étoiles et commentaires</li>
+<li>Section "Vous aimerez aussi" avec 4 produits de la même catégorie</li>
+</ul>
+
+<h2>2.4 Panier (CartDrawer)</h2>
+<ul>
+<li>Drawer latéral glissant depuis la droite (animation slideR)</li>
+<li>Overlay sombre semi-transparent en arrière-plan</li>
+<li>En-tête : titre "Panier" + bouton fermer (×)</li>
+<li>Liste des articles : miniature 60px, nom, prix en rose, contrôles quantité (+/−), bouton supprimer</li>
+<li>Total en bas avec prix en rose gras</li>
+<li>Bouton "Commander" gradient rose avec ombre</li>
+<li>Si vide : icône panier grise + message "Votre panier est vide"</li>
+</ul>
+
+<h2>2.5 Checkout (3 étapes)</h2>
+<ul>
+<li><strong>Indicateur de progression</strong> : 3 cercles numérotés (gradient rose si actif, rose pâle si inactif)</li>
+<li><strong>Étape 1 — Coordonnées</strong> : Prénom, nom, email, téléphone, adresse, ville (défaut "Nador"), code postal</li>
+<li><strong>Étape 2 — Livraison</strong> : 2 options radio : Standard 3-5j (30 MAD), Express 1-2j (60 MAD)</li>
+<li><strong>Étape 3 — Paiement</strong> : Récapitulatif commande + total en rose gras + formulaire carte (4242 4242 4242 4242 en mode test)</li>
+<li>Boutons Retour (fond rose pâle, texte rose) et Continuer/Confirmer (gradient rose)</li>
+<li>Page confirmation : cercle vert avec checkmark, numéro de commande, bouton retour accueil</li>
+</ul>
+
+<h2>2.6 Blog</h2>
+<ul>
+<li>Liste des articles publiés en cartes horizontales : image 240px, date en rose, titre, extrait, lien "Lire →"</li>
+<li>Page article : image couverture plein largeur, date en rose, titre 26px léger, contenu</li>
+</ul>
+
+<h2>2.7 Autres pages</h2>
+<ul>
+<li><strong>À propos</strong> : Layout 2 colonnes (photo atelier + texte histoire). Chiffres clés : 15+ ans, 5000+ pièces, 3000+ clients sur fond saumon clair.</li>
+<li><strong>Contact</strong> : Formulaire (nom, email, sujet, message) + coordonnées avec icônes rose + iframe Google Maps Nador. Confirmation verte après envoi.</li>
+<li><strong>Avis clients</strong> : Note moyenne (grand chiffre rose + étoiles), puis tous les avis approuvés avec photo produit cliquable.</li>
+</ul>
+
+<h2>2.8 Fonctionnalités transversales</h2>
+<ul>
+<li><strong>Recherche</strong> : Overlay centré avec champ texte, résultats instantanés (image + nom + prix), fond saumon au survol</li>
+<li><strong>Favoris</strong> : Bouton cœur sur chaque produit. Rouge quand actif. Persiste en mémoire pendant la session.</li>
+<li><strong>WhatsApp</strong> : Bouton vert flottant fixe en bas à droite. Ouvre wa.me avec message pré-rempli.</li>
+<li><strong>Multilingue</strong> : Select dans le header (FR/EN/AR/ES). Change toute l'interface instantanément. L'arabe inverse le layout (RTL).</li>
+<li><strong>Responsive</strong> : Grilles adaptatives, menu hamburger mobile, drawer pleine largeur sur petit écran.</li>
+<li><strong>Notifications toast</strong> : Message "Ajouté au panier ✨" en bas, gradient rose, arrondi, disparaît après 2.2s.</li>
+</ul>
+</div>
+
+<!-- 3. ADMIN -->
+<div class="section">
+<h1>3. Espace Administrateur — Guide complet</h1>
+<p>L'espace admin est une interface complète en <strong>dark mode</strong> (tons violet sombre #0f0a1a / #1a1230) permettant de gérer l'intégralité du site sans toucher au code.</p>
+
+<h2>3.1 Connexion</h2>
+<table class="table">
+<tr><th>Élément</th><th>Valeur</th></tr>
+<tr><td>Accès</td><td>Bouton "Administration" dans le footer du site, ou URL directe /admin/login</td></tr>
+<tr><td>Email par défaut</td><td>admin@nador.ma</td></tr>
+<tr><td>Mot de passe par défaut</td><td>admin123</td></tr>
+<tr><td>Sécurité</td><td>Mot de passe hashé bcrypt (coût 12) + session JWT signée</td></tr>
+</table>
+<p>⚠️ <strong>IMPORTANT</strong> : Changer impérativement le mot de passe avant la mise en production !</p>
+<p>La page de connexion affiche un formulaire centré avec icône cadenas, champs email/mot de passe, bouton gradient rose, et lien retour vers le site. En cas d'erreur, un message sur fond saumon affiche les identifiants de test.</p>
+
+<h2>3.2 Sidebar (Navigation admin)</h2>
+<p>Barre latérale fixe à gauche (220px), fond #1a1230 :</p>
+<ul>
+<li><strong>En-tête</strong> : "Bijouterie Nador" (blanc) + "Admin Panel" (rose, uppercase)</li>
+<li><strong>Dashboard</strong> — icône LayoutDashboard</li>
+<li><strong>Produits</strong> — icône Package</li>
+<li><strong>Commandes</strong> — icône ShoppingCart</li>
+<li><strong>Avis</strong> — icône Star</li>
+<li><strong>Blog</strong> — icône FileText</li>
+<li><strong>Retour au site</strong> — icône LogOut (rouge) en bas</li>
+</ul>
+<p>L'élément actif a un fond rose transparent (rgba(233,30,99,0.15)) et texte rose.</p>
+
+<h2>3.3 Dashboard</h2>
+<p>4 cartes KPI en grille horizontale :</p>
+<table class="table">
+<tr><th>KPI</th><th>Icône</th><th>Couleur</th><th>Donnée</th></tr>
+<tr><td>Produits</td><td>Package</td><td>Rose</td><td>Nombre total de produits dans le catalogue</td></tr>
+<tr><td>Commandes</td><td>ShoppingCart</td><td>Corail</td><td>Nombre total de commandes reçues</td></tr>
+<tr><td>Revenus</td><td>TrendingUp</td><td>Vert</td><td>Chiffre d'affaires total en MAD</td></tr>
+<tr><td>Avis en attente</td><td>Star</td><td>Doré</td><td>Nombre d'avis avec statut "pending"</td></tr>
+</table>
+<p>Sous les KPIs : tableau des <strong>5 dernières commandes</strong> (numéro, client, total en rose, badge statut coloré, date).</p>
+
+<h2>3.4 Gestion des Produits</h2>
+<h3>3.4.1 Liste des produits</h3>
+<p>Tableau complet avec les colonnes :</p>
+<table class="table">
+<tr><th>Colonne</th><th>Contenu</th></tr>
+<tr><td>Image</td><td>Miniature 42×42px arrondie</td></tr>
+<tr><td>Produit</td><td>Nom (blanc gras) + catégorie · matériau (gris)</td></tr>
+<tr><td>Prix</td><td>En MAD, rose, gras</td></tr>
+<tr><td>Stock</td><td>Nombre coloré : vert (>5), orange (1-5), rouge (0)</td></tr>
+<tr><td>Statut</td><td>Toggle : œil vert "Publié" ou œil barré rouge "Masqué"</td></tr>
+<tr><td>Actions</td><td>Bouton Modifier (crayon, fond rose 10%) + Supprimer (poubelle, fond rouge 10%)</td></tr>
+</table>
+<p>En haut : titre "Produits (N)" + bouton <strong>"+ Nouveau produit"</strong> (gradient rose) + barre de recherche.</p>
+
+<h3>3.4.2 Éditeur de produit — Formulaire complet</h3>
+<p>Layout 2 colonnes. En-tête avec titre + boutons Annuler / Sauvegarder.</p>
+<p><strong>Colonne gauche (2/3) :</strong></p>
+<table class="table">
+<tr><th>Section</th><th>Champ</th><th>Type</th><th>Détails</th></tr>
+<tr><td rowspan="4">Noms multilingues</td><td>Nom Français</td><td>Texte</td><td>Direction LTR</td></tr>
+<tr><td>Nom Anglais</td><td>Texte</td><td>Direction LTR</td></tr>
+<tr><td>Nom Arabe</td><td>Texte</td><td>Direction RTL (dir="rtl")</td></tr>
+<tr><td>Nom Espagnol</td><td>Texte</td><td>Direction LTR</td></tr>
+<tr><td rowspan="4">Descriptions</td><td>Description FR</td><td>Textarea</td><td>2 lignes, LTR</td></tr>
+<tr><td>Description EN</td><td>Textarea</td><td>2 lignes, LTR</td></tr>
+<tr><td>Description AR</td><td>Textarea</td><td>2 lignes, RTL</td></tr>
+<tr><td>Description ES</td><td>Textarea</td><td>2 lignes, LTR</td></tr>
+</table>
+
+<p><strong>Colonne droite (1/3) :</strong></p>
+<table class="table">
+<tr><th>Section</th><th>Champ</th><th>Détails</th></tr>
+<tr><td>Image</td><td>Aperçu + URL</td><td>Preview de l'image actuelle + champ URL modifiable</td></tr>
+<tr><td rowspan="3">Prix & Stock</td><td>Prix (MAD)</td><td>Numérique. Prix de vente affiché.</td></tr>
+<tr><td>Prix barré</td><td>Optionnel. Si rempli → badge "Promo" + ancien prix barré.</td></tr>
+<tr><td>Stock</td><td>Numérique. Quantité disponible.</td></tr>
+<tr><td rowspan="4">Détails</td><td>Catégorie</td><td>Select : Bagues, Colliers, Bracelets, Boucles d'oreilles</td></tr>
+<tr><td>Matériau</td><td>Texte : Or 18K, Argent 925, Or Rose 18K, Or Blanc 18K…</td></tr>
+<tr><td>Pierre</td><td>Texte : Diamant, Rubis, Saphir, Émeraude, Perle, - (aucune)</td></tr>
+<tr><td>Poids</td><td>Texte : "3.2g", "28g"</td></tr>
+<tr><td rowspan="2">Options</td><td>Produit vedette</td><td>Checkbox. Si coché → affiché en page d'accueil section "Pièces d'exception".</td></tr>
+<tr><td>Publié</td><td>Checkbox. Si décoché → masqué du site mais visible dans l'admin.</td></tr>
+</table>
+
+<h3>3.4.3 Workflow produit</h3>
+<ul>
+<li><strong>Créer</strong> : "+ Nouveau produit" → remplir → Sauvegarder → notification "Produit sauvegardé ✓"</li>
+<li><strong>Modifier</strong> : Icône crayon → modifier les champs → Sauvegarder</li>
+<li><strong>Masquer/Publier</strong> : Icône œil → toggle. Le produit disparaît/réapparaît instantanément du site.</li>
+<li><strong>Supprimer</strong> : Icône poubelle → suppression définitive</li>
+<li><strong>Promotion</strong> : Remplir "Prix barré" → badge "Promo" automatique + ancien prix barré</li>
+<li><strong>Vedette</strong> : Cocher "Produit vedette" → apparaît en page d'accueil</li>
+</ul>
+
+<h2>3.5 Gestion des Commandes</h2>
+<p>Liste de cartes, chaque commande affiche :</p>
+<table class="table">
+<tr><th>Info</th><th>Détails</th></tr>
+<tr><td>Numéro</td><td>Ex: JWL-001 (blanc gras, 15px)</td></tr>
+<tr><td>Date</td><td>Date de création (gris, 12px)</td></tr>
+<tr><td>Client</td><td>Nom (texte admin) + email (gris)</td></tr>
+<tr><td>Articles</td><td>Liste "Nom ×quantité" séparés par virgule</td></tr>
+<tr><td>Total</td><td>Montant en MAD (rose, gras, 16px)</td></tr>
+<tr><td>Statut</td><td>Menu déroulant (select) pour changer le statut en temps réel</td></tr>
+</table>
+
+<h3>Statuts de commande</h3>
+<table class="table">
+<tr><th>Statut</th><th>Badge</th><th>Signification</th></tr>
+<tr><td>pending</td><td>Orange #fff3e0</td><td>En attente de traitement</td></tr>
+<tr><td>confirmed</td><td>Bleu #e3f2fd</td><td>Commande confirmée</td></tr>
+<tr><td>processing</td><td>Violet #f3e5f5</td><td>En cours de préparation</td></tr>
+<tr><td>shipped</td><td>Vert clair #e8f5e9</td><td>Colis expédié</td></tr>
+<tr><td>delivered</td><td>Vert foncé #e8f5e9</td><td>Livré au client</td></tr>
+<tr><td>cancelled</td><td>Rouge #ffebee</td><td>Commande annulée</td></tr>
+</table>
+
+<h2>3.6 Modération des Avis</h2>
+<p>Chaque avis affiché en carte horizontale :</p>
+<ul>
+<li><strong>Nom auteur</strong> (blanc gras 13px)</li>
+<li><strong>Étoiles</strong> dorées ★★★★★</li>
+<li><strong>Badge statut</strong> : "En attente" (orange), "Approuvé" (vert), "Rejeté" (rouge)</li>
+<li><strong>Date</strong> (gris 11px)</li>
+<li><strong>Commentaire</strong> (texte admin 13px)</li>
+</ul>
+<h3>Actions</h3>
+<table class="table">
+<tr><th>Action</th><th>Bouton</th><th>Visible quand</th><th>Effet</th></tr>
+<tr><td>Approuver</td><td>Vert "Approuver"</td><td>Statut = pending</td><td>L'avis devient visible sur le site</td></tr>
+<tr><td>Rejeter</td><td>Rouge "Rejeter"</td><td>Statut = pending</td><td>L'avis est masqué</td></tr>
+<tr><td>Supprimer</td><td>Icône poubelle</td><td>Toujours</td><td>Suppression définitive</td></tr>
+</table>
+
+<h2>3.7 Gestion du Blog</h2>
+<p>Liste des articles en cartes : image 80×56px, titre (blanc gras), date, toggle publié/masqué, boutons modifier/supprimer.</p>
+<p>Bouton <strong>"+ Nouvel article"</strong> en haut à droite.</p>
+<h3>Éditeur d'article</h3>
+<table class="table">
+<tr><th>Champ</th><th>Type</th><th>Description</th></tr>
+<tr><td>Titre</td><td>Texte</td><td>Titre de l'article</td></tr>
+<tr><td>Extrait</td><td>Textarea (3 lignes)</td><td>Résumé affiché dans les listes</td></tr>
+<tr><td>Image URL</td><td>Texte</td><td>URL de l'image de couverture</td></tr>
+<tr><td>Publié</td><td>Checkbox</td><td>Visible sur le site si coché</td></tr>
+</table>
+<p>Boutons : Annuler + Sauvegarder (notification "Article sauvegardé ✓").</p>
+</div>
+
+<!-- 4. ARCHITECTURE -->
+<div class="section">
+<h1>4. Architecture technique</h1>
+<table class="table">
+<tr><th>Couche</th><th>Technologie</th><th>Rôle</th></tr>
+<tr><td>Frontend</td><td>Next.js 14 (App Router) + React 18</td><td>Rendu SSR/SSG, routing, pages</td></tr>
+<tr><td>Styling</td><td>Tailwind CSS</td><td>Utilitaires CSS, responsive, thème</td></tr>
+<tr><td>State</td><td>Zustand</td><td>Gestion panier (persisté localStorage)</td></tr>
+<tr><td>Backend</td><td>Next.js API Routes</td><td>API REST CRUD</td></tr>
+<tr><td>ORM</td><td>Prisma</td><td>Requêtes BDD type-safe</td></tr>
+<tr><td>Base de données</td><td>PostgreSQL (Supabase)</td><td>Stockage des données</td></tr>
+<tr><td>Auth</td><td>NextAuth.js</td><td>Login admin, sessions JWT</td></tr>
+<tr><td>Paiement</td><td>Stripe</td><td>Checkout test → production</td></tr>
+<tr><td>Images</td><td>Cloudinary</td><td>Upload, optimisation, transformation</td></tr>
+<tr><td>i18n</td><td>next-intl</td><td>Traductions FR/EN/AR/ES, routing</td></tr>
+<tr><td>Hébergement</td><td>Vercel</td><td>Déploiement, CDN, SSL, CI/CD</td></tr>
+</table>
+</div>
+
+<!-- 5. STRUCTURE -->
+<div class="section">
+<h1>5. Structure des fichiers</h1>
+<div class="code">bijouterie-nador/
+├── prisma/
+│   ├── schema.prisma          # Schéma BDD complet
+│   └── seed.ts                # Données initiales
+├── public/images/
+├── src/
+│   ├── app/
+│   │   ├── [locale]/           # Pages multilingues
+│   │   │   ├── page.tsx        # Accueil
+│   │   │   ├── layout.tsx      # Header + Footer
+│   │   │   ├── shop/page.tsx   # Catalogue
+│   │   │   ├── shop/[slug]/page.tsx  # Fiche produit
+│   │   │   ├── cart/page.tsx
+│   │   │   ├── checkout/page.tsx
+│   │   │   ├── blog/page.tsx
+│   │   │   ├── blog/[slug]/page.tsx
+│   │   │   ├── about/page.tsx
+│   │   │   ├── contact/page.tsx
+│   │   │   └── reviews/page.tsx
+│   │   ├── admin/
+│   │   │   ├── login/page.tsx
+│   │   │   ├── layout.tsx      # Sidebar
+│   │   │   ├── page.tsx        # Dashboard
+│   │   │   ├── products/page.tsx
+│   │   │   ├── products/new/page.tsx
+│   │   │   ├── products/[id]/page.tsx
+│   │   │   ├── orders/page.tsx
+│   │   │   ├── reviews/page.tsx
+│   │   │   ├── blog/page.tsx
+│   │   │   ├── blog/new/page.tsx
+│   │   │   └── blog/[id]/page.tsx
+│   │   └── api/
+│   │       ├── auth/[...nextauth]/route.ts
+│   │       ├── products/route.ts
+│   │       ├── orders/route.ts
+│   │       ├── reviews/route.ts
+│   │       ├── blog/route.ts
+│   │       ├── upload/route.ts
+│   │       └── contact/route.ts
+│   ├── components/
+│   │   ├── layout/ (Header, Footer, Banner, WhatsApp)
+│   │   ├── product/ (ProductCard, Gallery, Grid)
+│   │   ├── cart/ (CartDrawer, CartItem)
+│   │   ├── ui/ (Button, Input, SectionTitle, Badge)
+│   │   └── admin/ (Sidebar, ProductEditor, BlogEditor)
+│   ├── lib/ (prisma.ts, auth.ts, stripe.ts, cloudinary.ts)
+│   ├── store/cart.ts
+│   ├── messages/ (fr.json, en.json, ar.json, es.json)
+│   └── types/index.ts
+├── .env.example
+├── next.config.js
+├── tailwind.config.js
+├── tsconfig.json
+└── package.json</div>
+</div>
+
+<!-- 6. SCHEMA BDD -->
+<div class="section">
+<h1>6. Schéma base de données</h1>
+<p>Fichier : <code>prisma/schema.prisma</code> — PostgreSQL via Supabase.</p>
+
+<h3>Table Admin</h3>
+<table class="table">
+<tr><th>Champ</th><th>Type</th><th>Description</th></tr>
+<tr><td>id</td><td>String (cuid)</td><td>Identifiant unique</td></tr>
+<tr><td>email</td><td>String (unique)</td><td>Email de connexion</td></tr>
+<tr><td>password</td><td>String</td><td>Hash bcrypt</td></tr>
+<tr><td>name</td><td>String</td><td>Nom affiché</td></tr>
+<tr><td>role</td><td>Enum</td><td>ADMIN ou SUPER_ADMIN</td></tr>
+</table>
+
+<h3>Table Category</h3>
+<table class="table">
+<tr><th>Champ</th><th>Type</th><th>Description</th></tr>
+<tr><td>slug</td><td>String (unique)</td><td>URL : rings, necklaces, bracelets, earrings</td></tr>
+<tr><td>nameEn/Fr/Ar/Es</td><td>String</td><td>Nom dans chaque langue</td></tr>
+<tr><td>image</td><td>String?</td><td>URL image catégorie</td></tr>
+<tr><td>order</td><td>Int</td><td>Ordre d'affichage</td></tr>
+</table>
+
+<h3>Table Product</h3>
+<table class="table">
+<tr><th>Champ</th><th>Type</th><th>Description</th></tr>
+<tr><td>slug, sku</td><td>String (unique)</td><td>URL et référence interne</td></tr>
+<tr><td>nameEn/Fr/Ar/Es</td><td>String</td><td>Noms multilingues</td></tr>
+<tr><td>descEn/Fr/Ar/Es</td><td>Text</td><td>Descriptions multilingues</td></tr>
+<tr><td>price</td><td>Decimal(10,2)</td><td>Prix de vente en MAD</td></tr>
+<tr><td>comparePrice</td><td>Decimal?</td><td>Ancien prix (promo)</td></tr>
+<tr><td>stock</td><td>Int</td><td>Quantité disponible</td></tr>
+<tr><td>material, stone, weight</td><td>String?</td><td>Caractéristiques</td></tr>
+<tr><td>featured</td><td>Boolean</td><td>Vedette (accueil)</td></tr>
+<tr><td>published</td><td>Boolean</td><td>Visible sur le site</td></tr>
+<tr><td>categoryId</td><td>FK → Category</td><td>Catégorie du produit</td></tr>
+</table>
+
+<h3>Table Order</h3>
+<table class="table">
+<tr><th>Champ</th><th>Type</th><th>Description</th></tr>
+<tr><td>orderNumber</td><td>String (unique)</td><td>Ex: JWL-20260316-001</td></tr>
+<tr><td>status</td><td>Enum</td><td>PENDING / CONFIRMED / PROCESSING / SHIPPED / DELIVERED / CANCELLED / REFUNDED</td></tr>
+<tr><td>customerName/Email/Phone</td><td>String</td><td>Coordonnées client</td></tr>
+<tr><td>shippingAddress/City/Zip</td><td>String</td><td>Adresse de livraison</td></tr>
+<tr><td>subtotal, shippingCost, total</td><td>Decimal</td><td>Montants en MAD</td></tr>
+<tr><td>paymentId, paidAt</td><td>String/DateTime</td><td>Référence paiement Stripe</td></tr>
+</table>
+
+<h3>Table Review</h3>
+<table class="table">
+<tr><th>Champ</th><th>Type</th><th>Description</th></tr>
+<tr><td>rating</td><td>Int (1-5)</td><td>Note étoiles</td></tr>
+<tr><td>comment</td><td>Text</td><td>Commentaire client</td></tr>
+<tr><td>authorName/Email</td><td>String</td><td>Auteur</td></tr>
+<tr><td>status</td><td>Enum</td><td>PENDING / APPROVED / REJECTED</td></tr>
+<tr><td>productId</td><td>FK → Product</td><td>Produit concerné</td></tr>
+</table>
+
+<h3>Table BlogPost</h3>
+<table class="table">
+<tr><th>Champ</th><th>Type</th><th>Description</th></tr>
+<tr><td>slug</td><td>String (unique)</td><td>URL de l'article</td></tr>
+<tr><td>titleEn/Fr/Ar/Es</td><td>String</td><td>Titres multilingues</td></tr>
+<tr><td>contentEn/Fr/Ar/Es</td><td>Text</td><td>Contenus multilingues</td></tr>
+<tr><td>coverImage</td><td>String?</td><td>Image de couverture</td></tr>
+<tr><td>published</td><td>Boolean</td><td>Publié ou brouillon</td></tr>
+<tr><td>tags</td><td>String[]</td><td>Tags pour filtrage</td></tr>
+</table>
+
+<h3>Autres tables</h3>
+<ul>
+<li><strong>ProductImage</strong> : url, alt, order, productId — Images supplémentaires</li>
+<li><strong>OrderItem</strong> : quantity, price, orderId, productId — Lignes de commande</li>
+<li><strong>ContactMessage</strong> : name, email, subject, message, read — Messages contact</li>
+<li><strong>Subscriber</strong> : email, locale, active — Newsletter</li>
+<li><strong>SiteSetting</strong> : key, value — Paramètres clé/valeur</li>
+</ul>
+</div>
+
+<!-- 7. INSTALLATION -->
+<div class="section">
+<h1>7. Installation pas à pas</h1>
+<h3>Prérequis</h3>
+<ul>
+<li>Node.js 18+ : https://nodejs.org</li>
+<li>Compte Supabase (gratuit) : https://supabase.com</li>
+<li>Compte Cloudinary (gratuit) : https://cloudinary.com</li>
+<li>Compte Stripe (gratuit) : https://stripe.com</li>
+<li>Compte Vercel (gratuit) : https://vercel.com</li>
+</ul>
+<h3>Commandes</h3>
+<div class="code">git clone https://github.com/votre-user/bijouterie-nador.git
+cd bijouterie-nador
+npm install
+cp .env.example .env.local
+# → Remplir .env.local avec vos clés (voir section 8)
+npx prisma db push
+npx tsx prisma/seed.ts
+npm run dev</div>
+<p>Site : <strong>http://localhost:3000</strong> — Admin : <strong>http://localhost:3000/admin/login</strong></p>
+</div>
+
+<!-- 8. CONFIG -->
+<div class="section">
+<h1>8. Configuration (.env.local)</h1>
+<div class="code"># Base de données Supabase
+DATABASE_URL="postgresql://postgres:PASSWORD@db.ID.supabase.co:5432/postgres"
+
+# Auth
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="votre-cle-secrete"   # Générer : openssl rand -base64 32
+
+# Stripe (mode test)
+STRIPE_SECRET_KEY="sk_test_..."
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_..."
+
+# Cloudinary
+CLOUDINARY_CLOUD_NAME="votre_cloud"
+CLOUDINARY_API_KEY="votre_key"
+CLOUDINARY_API_SECRET="votre_secret"
+
+# Google Maps
+NEXT_PUBLIC_GOOGLE_MAPS_KEY="votre_cle"
+
+# WhatsApp
+NEXT_PUBLIC_WHATSAPP_NUMBER="212600000000"</div>
+</div>
+
+<!-- 9. CLAUDE CODE -->
+<div class="section">
+<h1>9. Guide Claude Code + VS Code</h1>
+<h2>9.1 Installation</h2>
+<div class="code">npm install -g @anthropic-ai/claude-code
+claude --version
+claude login
+# → Suivre les instructions dans le navigateur</div>
+<p>Dans VS Code : terminal intégré (Ctrl+\`) puis taper <code>claude</code>.</p>
+
+<h2>9.2 Workflow phase par phase</h2>
+
+<h3>Phase 1 — Configuration</h3>
+<div class="code">claude "Installe les dépendances du package.json"
+claude "Configure Tailwind CSS avec la palette rose/corail/saumon"
+claude "Initialise Prisma et pousse le schéma vers Supabase"
+claude "Lance le seed pour créer l'admin et les données test"</div>
+
+<h3>Phase 2 — Composants de base</h3>
+<div class="code">claude "Crée le Header avec navigation, sélecteur langue, recherche, panier"
+claude "Crée le Footer avec liens, contact et bouton admin"
+claude "Crée le ProductCard avec image, nom, prix, favoris, ajout panier"
+claude "Crée le CartDrawer (panier latéral avec animation)"
+claude "Crée le WhatsAppButton (bouton flottant vert)"</div>
+
+<h3>Phase 3 — Pages publiques</h3>
+<div class="code">claude "Crée la page d'accueil avec hero, collections, produits, avis, blog, newsletter"
+claude "Crée la page boutique avec filtres par catégorie en pills"
+claude "Crée la page produit avec galerie, specs, avis, produits similaires"
+claude "Crée le checkout en 3 étapes avec Stripe mode test"
+claude "Crée les pages blog, about, contact (Google Maps Nador), avis"</div>
+
+<h3>Phase 4 — API Routes</h3>
+<div class="code">claude "Crée les API routes CRUD pour les produits avec validation Zod"
+claude "Crée les API routes pour les commandes avec gestion statuts"
+claude "Crée les API pour les avis avec modération"
+claude "Configure NextAuth avec Credentials provider pour l'admin"</div>
+
+<h3>Phase 5 — Espace Admin</h3>
+<div class="code">claude "Crée le layout admin avec sidebar dark mode violet"
+claude "Crée le dashboard avec 4 KPIs et tableau dernières commandes"
+claude "Crée la gestion produits : liste, recherche, éditeur multilingue complet"
+claude "Crée la gestion commandes avec changement de statut par select"
+claude "Crée la modération avis : approuver/rejeter/supprimer"
+claude "Crée la gestion blog : liste, éditeur, toggle publié"</div>
+
+<h3>Phase 6 — Finalisation</h3>
+<div class="code">claude "Ajoute SEO : sitemap.xml, robots.txt, meta tags, Schema.org"
+claude "Optimise les images avec next/image (WebP auto)"
+claude "Ajoute les traductions complètes en 4 langues"
+claude "Teste et corrige les erreurs TypeScript"</div>
+
+<h2>9.3 Commandes utiles</h2>
+<div class="code">npm run dev         # Serveur de développement
+npm run build       # Build production
+npx prisma studio   # Interface visuelle BDD
+npm run db:seed     # Remplir BDD avec données test
+npm run db:reset    # Reset complet + re-seed
+vercel              # Déployer sur Vercel
+vercel --prod       # Déployer en production</div>
+
+<h2>9.4 Astuces</h2>
+<ul>
+<li><strong>Soyez précis</strong> : "Crée le fichier X dans le dossier Y" plutôt que "Fais la page"</li>
+<li><strong>Un fichier à la fois</strong> : ne demandez pas 10 fichiers d'un coup</li>
+<li><strong>Testez souvent</strong> : npm run dev après chaque étape</li>
+<li><strong>Montrez les erreurs</strong> : copiez-collez les erreurs à Claude</li>
+<li><strong>Itérez</strong> : "Modifie le bouton pour qu'il soit plus gros" fonctionne très bien</li>
+</ul>
+</div>
+
+<!-- 10. DEPLOIEMENT -->
+<div class="section">
+<h1>10. Déploiement et mise en ligne</h1>
+<h2>10.1 Nom de domaine</h2>
+<p>Acheter sur Namecheap (~10$/an) : bijouterie-nador.com — ou .ma via registrar marocain.</p>
+<h2>10.2 Base de données</h2>
+<p>Créer un projet Supabase (gratuit : 500 Mo BDD + 1 Go stockage). Copier l'URL PostgreSQL. Exécuter npx prisma db push.</p>
+<h2>10.3 Vercel</h2>
+<div class="code">npm i -g vercel
+vercel
+# Configurer variables dans Vercel Dashboard → Settings → Environment Variables</div>
+<h2>10.4 Domaine</h2>
+<p>Vercel Dashboard → Settings → Domains → Ajouter domaine → Configurer DNS chez registrar.</p>
+</div>
+
+<!-- 11. SEO -->
+<div class="section">
+<h1>11. SEO et référencement</h1>
+<ul>
+<li>Sitemap XML automatique (/sitemap.xml)</li>
+<li>Robots.txt configuré</li>
+<li>Meta title + description uniques par page et par langue</li>
+<li>Balises hreflang pour les versions linguistiques</li>
+<li>Données structurées Schema.org : Product, AggregateRating, BreadcrumbList, Organization</li>
+<li>Images optimisées WebP automatique via next/image</li>
+<li>Server-Side Rendering pour contenu indexable</li>
+<li>Blog SEO avec articles ciblant des mots-clés pertinents</li>
+</ul>
+<h3>Outils à configurer</h3>
+<ul>
+<li>Google Search Console : soumettre le sitemap</li>
+<li>Google Analytics 4 : trafic et conversions</li>
+<li>Google Business Profile : visibilité locale Nador</li>
+</ul>
+</div>
+
+<!-- 12. SECURITE -->
+<div class="section">
+<h1>12. Sécurité</h1>
+<ul>
+<li>HTTPS obligatoire (automatique Vercel, SSL inclus)</li>
+<li>Mots de passe hashés bcrypt (coût 12)</li>
+<li>Sessions JWT signées NEXTAUTH_SECRET</li>
+<li>Validation serveur Zod</li>
+<li>Protection CSRF</li>
+<li>Rate limiting routes sensibles</li>
+<li>Headers : CSP, X-Frame-Options DENY, X-Content-Type-Options nosniff, HSTS</li>
+<li>Variables sensibles dans .env uniquement</li>
+<li>Sauvegardes auto Supabase</li>
+</ul>
+</div>
+
+<!-- 13. CHECKLIST -->
+<div class="section">
+<h1>13. Checklist de lancement</h1>
+<h2>Avant le lancement</h2>
+<h3>Configuration</h3>
+<p class="chk">☐ Variables d'environnement configurées sur Vercel</p>
+<p class="chk">☐ Base de données Supabase créée et schéma poussé</p>
+<p class="chk">☐ Seed exécuté</p>
+<p class="chk">☐ Compte Stripe configuré</p>
+<p class="chk">☐ Compte Cloudinary configuré</p>
+<p class="chk">☐ Clé API Google Maps</p>
+<h3>Sécurité</h3>
+<p class="chk">☐ Mot de passe admin changé</p>
+<p class="chk">☐ NEXTAUTH_SECRET généré aléatoirement</p>
+<p class="chk">☐ Variables sensibles dans .env uniquement</p>
+<h3>Contenu</h3>
+<p class="chk">☐ Tous les produits ajoutés avec photos HD</p>
+<p class="chk">☐ Descriptions en 4 langues</p>
+<p class="chk">☐ Prix corrects en MAD</p>
+<p class="chk">☐ Au moins 3 articles blog</p>
+<p class="chk">☐ Page À propos rédigée</p>
+<p class="chk">☐ Coordonnées vérifiées</p>
+<p class="chk">☐ Numéro WhatsApp correct</p>
+<h3>Tests</h3>
+<p class="chk">☐ Navigation complète</p>
+<p class="chk">☐ Panier (ajout, modif, suppression)</p>
+<p class="chk">☐ Checkout Stripe mode test</p>
+<p class="chk">☐ Admin : CRUD produits, commandes, avis, blog</p>
+<p class="chk">☐ Responsive mobile</p>
+<p class="chk">☐ 4 langues (surtout arabe RTL)</p>
+<p class="chk">☐ Formulaire contact</p>
+<p class="chk">☐ Recherche produits</p>
+<h3>Domaine</h3>
+<p class="chk">☐ Nom de domaine acheté</p>
+<p class="chk">☐ DNS → Vercel</p>
+<p class="chk">☐ SSL fonctionnel</p>
+
+<h2>Après le lancement</h2>
+<p class="chk">☐ Stripe en mode production</p>
+<p class="chk">☐ Google Search Console</p>
+<p class="chk">☐ Google Analytics 4</p>
+<p class="chk">☐ Google Business Profile Nador</p>
+<p class="chk">☐ Sauvegardes Supabase</p>
+<p class="chk">☐ Monitoring Vercel Analytics</p>
+</div>
+
+<div class="footer">
+<p>💎 Bijouterie Nador — Documentation Technique Complète</p>
+<p>Joaillerie artisanale · Nador, Maroc · ${new Date().toLocaleDateString('fr-FR')}</p>
+</div>
+
+</body></html>`;
+}

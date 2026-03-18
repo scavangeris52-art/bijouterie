@@ -1,0 +1,189 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "shop": "Tienda",
+    "blog": "Blog",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "reviews": "Opiniones",
+    "cart": "Carrito",
+    "search": "Buscar..."
+  },
+  "home": {
+    "hero": {
+      "badge": "Nueva Colección",
+      "title": "El Arte de la Joyería Artesanal",
+      "subtitle": "Joyas excepcionales fabricadas en Nador, cada pieza cuenta una historia de elegancia y refinamiento.",
+      "cta": "Descubrir la Colección"
+    },
+    "collections": {
+      "title": "Nuestras Colecciones",
+      "subtitle": "Explora nuestras piezas excepcionales, creadas con pasión y maestría artesanal"
+    },
+    "featured": {
+      "title": "Piezas Excepcionales",
+      "subtitle": "Una selección de nuestras creaciones más refinadas"
+    },
+    "reviews": {
+      "title": "Confían en Nosotros",
+      "subtitle": "Descubre lo que nuestros clientes dicen sobre nosotros"
+    },
+    "blog": {
+      "title": "Noticias y Consejos",
+      "subtitle": "Mantente informado sobre las tendencias y el mundo de la joyería",
+      "readMore": "Leer más →"
+    },
+    "newsletter": {
+      "title": "Mantente Informado",
+      "subtitle": "Suscríbete para recibir nuestras nuevas colecciones y ofertas exclusivas",
+      "placeholder": "Tu dirección de email",
+      "button": "Suscribirse",
+      "success": "¡Gracias por suscribirte!"
+    }
+  },
+  "shop": {
+    "title": "Nuestra Tienda",
+    "subtitle": "Descubre toda nuestra colección de joyería artesanal",
+    "all": "Todo",
+    "filters": "Filtros",
+    "sortBy": "Ordenar por",
+    "noProducts": "No se encontraron productos",
+    "addToCart": "Añadir al carrito",
+    "viewProduct": "Ver producto",
+    "promo": "Oferta",
+    "outOfStock": "Sin stock"
+  },
+  "product": {
+    "addToCart": "Añadir al carrito",
+    "addedToCart": "Añadido al carrito ✨",
+    "wishlist": "Favoritos",
+    "quantity": "Cantidad",
+    "inStock": "En stock",
+    "outOfStock": "Sin stock",
+    "specifications": "Características",
+    "material": "Material",
+    "stone": "Piedra",
+    "weight": "Peso",
+    "reviews": "Opiniones",
+    "similar": "También te puede gustar",
+    "sku": "Referencia",
+    "category": "Categoría",
+    "writeReview": "Escribir opinión",
+    "noReviews": "Aún no hay opiniones"
+  },
+  "cart": {
+    "title": "Mi Carrito",
+    "empty": "Tu carrito está vacío",
+    "emptySubtitle": "Descubre nuestras hermosas joyas",
+    "continueShopping": "Continuar comprando",
+    "checkout": "Finalizar pedido",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "shipping": "Envío",
+    "free": "Gratis",
+    "remove": "Eliminar",
+    "items": "{count} artículo(s)"
+  },
+  "checkout": {
+    "title": "Completar mi Pedido",
+    "step1": "Datos",
+    "step2": "Envío",
+    "step3": "Pago",
+    "firstName": "Nombre",
+    "lastName": "Apellidos",
+    "email": "Email",
+    "phone": "Teléfono",
+    "address": "Dirección",
+    "city": "Ciudad",
+    "zip": "Código postal",
+    "standardShipping": "Envío Estándar",
+    "standardTime": "3-5 días laborables",
+    "expressShipping": "Envío Exprés",
+    "expressTime": "1-2 días laborables",
+    "orderSummary": "Resumen del pedido",
+    "placeOrder": "Confirmar pedido",
+    "back": "Volver",
+    "next": "Continuar",
+    "processing": "Procesando...",
+    "success": "¡Pedido confirmado!",
+    "successMessage": "Tu pedido {orderNumber} ha sido registrado. Recibirás un email de confirmación.",
+    "backToHome": "Volver al inicio"
+  },
+  "blog": {
+    "title": "Nuestro Blog",
+    "subtitle": "Consejos, tendencias y noticias del mundo de la joyería",
+    "readMore": "Leer artículo →",
+    "allPosts": "Todos los artículos",
+    "noPosts": "No hay artículos publicados aún"
+  },
+  "about": {
+    "title": "Nuestra Historia",
+    "subtitle": "Pasión y maestría artesanal durante más de 15 años en Nador",
+    "story": "Fundada en el corazón de Nador, nuestra joyería perpetúa una tradición artesanal transmitida de generación en generación. Cada joya es una obra única, forjada con amor y precisión por nuestros artesanos apasionados.",
+    "years": "Años de experiencia",
+    "pieces": "Piezas creadas",
+    "clients": "Clientes satisfechos",
+    "ourValues": "Nuestros valores",
+    "quality": "Calidad",
+    "qualityDesc": "Materiales certificados, gemas auténticas, acabados perfectos",
+    "craftsmanship": "Artesanía",
+    "craftsmanshipDesc": "Cada pieza se elabora a mano por nuestros maestros joyeros",
+    "trust": "Confianza",
+    "trustDesc": "15 años de relaciones de confianza con nuestros clientes"
+  },
+  "contact": {
+    "title": "Contáctenos",
+    "subtitle": "Estamos disponibles de lunes a sábado",
+    "name": "Tu nombre",
+    "email": "Tu email",
+    "subject": "Asunto",
+    "message": "Tu mensaje",
+    "send": "Enviar mensaje",
+    "sending": "Enviando...",
+    "success": "¡Mensaje enviado! Te responderemos en 24h.",
+    "address": "Dirección",
+    "phone": "Teléfono",
+    "hours": "Horario",
+    "hoursValue": "Lun–Sáb: 9h–20h"
+  },
+  "reviews": {
+    "title": "Opiniones de nuestros clientes",
+    "subtitle": "Lo que dicen nuestros clientes sobre sus compras",
+    "average": "Puntuación media",
+    "totalReviews": "{count} opiniones",
+    "noReviews": "Aún no hay opiniones aprobadas",
+    "writeReview": "Escribir opinión",
+    "yourName": "Tu nombre",
+    "yourEmail": "Tu email",
+    "yourRating": "Tu puntuación",
+    "yourReview": "Tu comentario",
+    "submit": "Publicar opinión",
+    "pending": "Tu opinión está pendiente de moderación. ¡Gracias!"
+  },
+  "footer": {
+    "description": "Joyería artesanal excepcional, elaborada con pasión en Nador, Marruecos.",
+    "links": "Enlaces rápidos",
+    "legal": "Aviso legal",
+    "privacy": "Política de privacidad",
+    "terms": "Condiciones de venta",
+    "admin": "Administración",
+    "rights": "Todos los derechos reservados.",
+    "madeWith": "Hecho con ❤️ en Nador, Marruecos"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Se produjo un error",
+    "retry": "Reintentar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Añadir",
+    "search": "Buscar",
+    "close": "Cerrar",
+    "back": "Volver",
+    "yes": "Sí",
+    "no": "No",
+    "currency": "MAD"
+  }
+}

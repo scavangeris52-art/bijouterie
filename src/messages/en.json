@@ -1,0 +1,189 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "reviews": "Reviews",
+    "cart": "Cart",
+    "search": "Search..."
+  },
+  "home": {
+    "hero": {
+      "badge": "New Collection",
+      "title": "The Art of Artisan Jewelry",
+      "subtitle": "Exceptional jewelry crafted in Nador, each piece tells a story of elegance and refinement.",
+      "cta": "Discover the Collection"
+    },
+    "collections": {
+      "title": "Our Collections",
+      "subtitle": "Explore our exceptional pieces, crafted with passion and artisanal expertise"
+    },
+    "featured": {
+      "title": "Exceptional Pieces",
+      "subtitle": "A selection of our most refined creations"
+    },
+    "reviews": {
+      "title": "Our Customers Love Us",
+      "subtitle": "Discover what our customers say about us"
+    },
+    "blog": {
+      "title": "News & Advice",
+      "subtitle": "Stay informed about trends and the world of jewelry",
+      "readMore": "Read more →"
+    },
+    "newsletter": {
+      "title": "Stay Informed",
+      "subtitle": "Subscribe to receive our new collections and exclusive offers",
+      "placeholder": "Your email address",
+      "button": "Subscribe",
+      "success": "Thank you for subscribing!"
+    }
+  },
+  "shop": {
+    "title": "Our Shop",
+    "subtitle": "Discover our entire collection of artisan jewelry",
+    "all": "All",
+    "filters": "Filters",
+    "sortBy": "Sort by",
+    "noProducts": "No products found",
+    "addToCart": "Add to Cart",
+    "viewProduct": "View Product",
+    "promo": "Sale",
+    "outOfStock": "Out of Stock"
+  },
+  "product": {
+    "addToCart": "Add to Cart",
+    "addedToCart": "Added to Cart ✨",
+    "wishlist": "Wishlist",
+    "quantity": "Quantity",
+    "inStock": "In stock",
+    "outOfStock": "Out of stock",
+    "specifications": "Specifications",
+    "material": "Material",
+    "stone": "Stone",
+    "weight": "Weight",
+    "reviews": "Customer Reviews",
+    "similar": "You May Also Like",
+    "sku": "Reference",
+    "category": "Category",
+    "writeReview": "Write a Review",
+    "noReviews": "No reviews yet"
+  },
+  "cart": {
+    "title": "My Cart",
+    "empty": "Your cart is empty",
+    "emptySubtitle": "Discover our beautiful jewelry",
+    "continueShopping": "Continue Shopping",
+    "checkout": "Checkout",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "free": "Free",
+    "remove": "Remove",
+    "items": "{count} item(s)"
+  },
+  "checkout": {
+    "title": "Complete My Order",
+    "step1": "Details",
+    "step2": "Shipping",
+    "step3": "Payment",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "zip": "Postal Code",
+    "standardShipping": "Standard Shipping",
+    "standardTime": "3-5 business days",
+    "expressShipping": "Express Shipping",
+    "expressTime": "1-2 business days",
+    "orderSummary": "Order Summary",
+    "placeOrder": "Place Order",
+    "back": "Back",
+    "next": "Continue",
+    "processing": "Processing...",
+    "success": "Order Confirmed!",
+    "successMessage": "Your order {orderNumber} has been placed. You will receive a confirmation email.",
+    "backToHome": "Back to Home"
+  },
+  "blog": {
+    "title": "Our Blog",
+    "subtitle": "Tips, trends and news from the world of jewelry",
+    "readMore": "Read article →",
+    "allPosts": "All Posts",
+    "noPosts": "No posts published yet"
+  },
+  "about": {
+    "title": "Our Story",
+    "subtitle": "Passion and artisanal expertise for over 15 years in Nador",
+    "story": "Founded in the heart of Nador, our jewelry store perpetuates an artisanal tradition passed down through generations. Each jewel is a unique work, crafted with love and precision by our passionate artisans.",
+    "years": "Years of Experience",
+    "pieces": "Pieces Created",
+    "clients": "Satisfied Clients",
+    "ourValues": "Our Values",
+    "quality": "Quality",
+    "qualityDesc": "Certified materials, authentic gems, perfect finishes",
+    "craftsmanship": "Craftsmanship",
+    "craftsmanshipDesc": "Each piece is handcrafted by our master jewelers",
+    "trust": "Trust",
+    "trustDesc": "15 years of trusted relationships with our customers"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are available Monday to Saturday",
+    "name": "Your Name",
+    "email": "Your Email",
+    "subject": "Subject",
+    "message": "Your Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent! We'll reply within 24 hours.",
+    "address": "Address",
+    "phone": "Phone",
+    "hours": "Opening Hours",
+    "hoursValue": "Mon–Sat: 9am–8pm"
+  },
+  "reviews": {
+    "title": "Customer Reviews",
+    "subtitle": "What our customers say about their purchases",
+    "average": "Average Rating",
+    "totalReviews": "{count} reviews",
+    "noReviews": "No approved reviews yet",
+    "writeReview": "Write a Review",
+    "yourName": "Your Name",
+    "yourEmail": "Your Email",
+    "yourRating": "Your Rating",
+    "yourReview": "Your Review",
+    "submit": "Submit Review",
+    "pending": "Your review is pending moderation. Thank you!"
+  },
+  "footer": {
+    "description": "Exceptional artisan jewelry, crafted with passion in Nador, Morocco.",
+    "links": "Quick Links",
+    "legal": "Legal Notice",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Sale",
+    "admin": "Administration",
+    "rights": "All rights reserved.",
+    "madeWith": "Made with ❤️ in Nador, Morocco"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "close": "Close",
+    "back": "Back",
+    "yes": "Yes",
+    "no": "No",
+    "currency": "MAD"
+  }
+}

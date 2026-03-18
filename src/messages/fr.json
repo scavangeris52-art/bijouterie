@@ -1,0 +1,189 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "shop": "Boutique",
+    "blog": "Blog",
+    "about": "À propos",
+    "contact": "Contact",
+    "reviews": "Avis clients",
+    "cart": "Panier",
+    "search": "Rechercher..."
+  },
+  "home": {
+    "hero": {
+      "badge": "Nouvelle collection",
+      "title": "L'art de la bijouterie artisanale",
+      "subtitle": "Bijoux d'exception fabriqués à Nador, chaque pièce raconte une histoire d'élégance et de raffinement.",
+      "cta": "Découvrir la collection"
+    },
+    "collections": {
+      "title": "Nos Collections",
+      "subtitle": "Explorez nos pièces d'exception, créées avec passion et savoir-faire artisanal"
+    },
+    "featured": {
+      "title": "Pièces d'Exception",
+      "subtitle": "Une sélection de nos créations les plus raffinées"
+    },
+    "reviews": {
+      "title": "Ils nous font confiance",
+      "subtitle": "Découvrez ce que nos clients disent de nous"
+    },
+    "blog": {
+      "title": "Actualités & Conseils",
+      "subtitle": "Restez informé des tendances et de l'univers de la bijouterie",
+      "readMore": "Lire la suite →"
+    },
+    "newsletter": {
+      "title": "Restez informé",
+      "subtitle": "Inscrivez-vous pour recevoir nos nouvelles collections et offres exclusives",
+      "placeholder": "Votre adresse email",
+      "button": "S'inscrire",
+      "success": "Merci pour votre inscription !"
+    }
+  },
+  "shop": {
+    "title": "Notre Boutique",
+    "subtitle": "Découvrez toute notre collection de bijoux artisanaux",
+    "all": "Tout",
+    "filters": "Filtres",
+    "sortBy": "Trier par",
+    "noProducts": "Aucun produit trouvé",
+    "addToCart": "Ajouter au panier",
+    "viewProduct": "Voir le produit",
+    "promo": "Promo",
+    "outOfStock": "Rupture de stock"
+  },
+  "product": {
+    "addToCart": "Ajouter au panier",
+    "addedToCart": "Ajouté au panier ✨",
+    "wishlist": "Favoris",
+    "quantity": "Quantité",
+    "inStock": "En stock",
+    "outOfStock": "Rupture de stock",
+    "specifications": "Caractéristiques",
+    "material": "Matériau",
+    "stone": "Pierre",
+    "weight": "Poids",
+    "reviews": "Avis clients",
+    "similar": "Vous aimerez aussi",
+    "sku": "Référence",
+    "category": "Catégorie",
+    "writeReview": "Écrire un avis",
+    "noReviews": "Aucun avis pour le moment"
+  },
+  "cart": {
+    "title": "Mon Panier",
+    "empty": "Votre panier est vide",
+    "emptySubtitle": "Découvrez nos magnifiques bijoux",
+    "continueShopping": "Continuer mes achats",
+    "checkout": "Commander",
+    "total": "Total",
+    "subtotal": "Sous-total",
+    "shipping": "Livraison",
+    "free": "Gratuite",
+    "remove": "Supprimer",
+    "items": "{count} article(s)"
+  },
+  "checkout": {
+    "title": "Finaliser ma commande",
+    "step1": "Coordonnées",
+    "step2": "Livraison",
+    "step3": "Paiement",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "address": "Adresse",
+    "city": "Ville",
+    "zip": "Code postal",
+    "standardShipping": "Livraison Standard",
+    "standardTime": "3-5 jours ouvrés",
+    "expressShipping": "Livraison Express",
+    "expressTime": "1-2 jours ouvrés",
+    "orderSummary": "Récapitulatif",
+    "placeOrder": "Confirmer la commande",
+    "back": "Retour",
+    "next": "Continuer",
+    "processing": "Traitement en cours...",
+    "success": "Commande confirmée !",
+    "successMessage": "Votre commande {orderNumber} a bien été enregistrée. Vous recevrez un email de confirmation.",
+    "backToHome": "Retour à l'accueil"
+  },
+  "blog": {
+    "title": "Notre Blog",
+    "subtitle": "Conseils, tendances et actualités du monde de la bijouterie",
+    "readMore": "Lire l'article →",
+    "allPosts": "Tous les articles",
+    "noPosts": "Aucun article publié pour le moment"
+  },
+  "about": {
+    "title": "Notre Histoire",
+    "subtitle": "Passion et savoir-faire artisanal depuis plus de 15 ans à Nador",
+    "story": "Fondée au cœur de Nador, notre bijouterie perpétue une tradition artisanale transmise de génération en génération. Chaque bijou est une œuvre unique, façonnée avec amour et précision par nos artisans passionnés.",
+    "years": "Années d'expérience",
+    "pieces": "Pièces créées",
+    "clients": "Clients satisfaits",
+    "ourValues": "Nos valeurs",
+    "quality": "Qualité",
+    "qualityDesc": "Matériaux certifiés, gemmes authentiques, finitions parfaites",
+    "craftsmanship": "Artisanat",
+    "craftsmanshipDesc": "Chaque pièce est façonnée à la main par nos maîtres joaillers",
+    "trust": "Confiance",
+    "trustDesc": "15 ans de relation de confiance avec nos clients"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes à votre écoute du lundi au samedi",
+    "name": "Votre nom",
+    "email": "Votre email",
+    "subject": "Sujet",
+    "message": "Votre message",
+    "send": "Envoyer le message",
+    "sending": "Envoi...",
+    "success": "Message envoyé ! Nous vous répondrons dans les 24h.",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "hours": "Horaires",
+    "hoursValue": "Lun–Sam : 9h–20h"
+  },
+  "reviews": {
+    "title": "Avis de nos clients",
+    "subtitle": "Ce que disent nos clients sur leurs achats",
+    "average": "Note moyenne",
+    "totalReviews": "{count} avis",
+    "noReviews": "Aucun avis approuvé pour le moment",
+    "writeReview": "Écrire un avis",
+    "yourName": "Votre nom",
+    "yourEmail": "Votre email",
+    "yourRating": "Votre note",
+    "yourReview": "Votre commentaire",
+    "submit": "Publier l'avis",
+    "pending": "Votre avis est en attente de modération. Merci !"
+  },
+  "footer": {
+    "description": "Bijoux artisanaux d'exception, fabriqués avec passion à Nador, Maroc.",
+    "links": "Liens rapides",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions de vente",
+    "admin": "Administration",
+    "rights": "Tous droits réservés.",
+    "madeWith": "Fait avec ❤️ à Nador, Maroc"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "save": "Sauvegarder",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "search": "Rechercher",
+    "close": "Fermer",
+    "back": "Retour",
+    "yes": "Oui",
+    "no": "Non",
+    "currency": "MAD"
+  }
+}
