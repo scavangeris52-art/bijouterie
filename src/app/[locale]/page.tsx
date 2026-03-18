@@ -5,7 +5,7 @@ import prisma from "@/lib/prisma";
 import ProductCard from "@/components/product/ProductCard";
 import SectionTitle from "@/components/ui/SectionTitle";
 import StarRating from "@/components/ui/StarRating";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, getLocalizedField } from "@/lib/utils";
 import NewsletterSection from "@/components/home/NewsletterSection";
 
 export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
@@ -28,10 +28,6 @@ export default async function HomePage({ params: { locale } }: { params: { local
     bracelets:          { nameFr: "Bracelets",           nameEn: "Bracelets", nameAr: "أساور",  nameEs: "Pulseras"  },
     "boucles-doreilles":{ nameFr: "Boucles d'oreilles",  nameEn: "Earrings",  nameAr: "أقراط",  nameEs: "Pendientes"},
   };
-  const nameKey = `name${locale.charAt(0).toUpperCase() + locale.slice(1)}` as keyof (typeof catNames)[string];
-
-  const blogTitleKey  = `title${locale.charAt(0).toUpperCase() + locale.slice(1)}`  as "titleFr" | "titleEn" | "titleAr" | "titleEs";
-  const blogExcerptKey = `excerpt${locale.charAt(0).toUpperCase() + locale.slice(1)}` as "excerptFr" | "excerptEn" | "excerptAr" | "excerptEs";
 
   return (
     <div>
@@ -63,7 +59,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
         <SectionTitle title={t("collections.title")} subtitle={t("collections.subtitle")} />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {categories.map((cat) => {
-            const displayName = (cat as Record<string, string>)[nameKey] || cat.nameFr;
+            const displayName = getLocalizedField(cat, "name", locale) || cat.nameFr;
             return (
               <Link key={cat.id} href={`/${locale}/shop?category=${cat.slug}`}
                 className="group relative overflow-hidden rounded-2xl aspect-square bg-cream-100 hover:shadow-luxury transition-all duration-300">
@@ -130,7 +126,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
                   className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-luxury transition-all duration-300">
                   {post.coverImage && (
                     <div className="relative h-48 overflow-hidden">
-                      <Image src={post.coverImage} alt={(post as Record<string, string>)[blogTitleKey] || post.titleFr} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <Image src={post.coverImage} alt={getLocalizedField(post, "title", locale) || post.titleFr} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                     </div>
                   )}
                   <div className="p-5">
@@ -138,10 +134,10 @@ export default async function HomePage({ params: { locale } }: { params: { local
                       {new Date(post.createdAt).toLocaleDateString(locale === "ar" ? "ar-MA" : "fr-FR", { day: "numeric", month: "long", year: "numeric" })}
                     </p>
                     <h3 className="font-luxury text-gray-800 font-medium text-base mb-2 line-clamp-2 group-hover:text-rose-500 transition-colors">
-                      {(post as Record<string, string>)[blogTitleKey] || post.titleFr}
+                      {getLocalizedField(post, "title", locale) || post.titleFr}
                     </h3>
                     <p className="text-gray-500 text-sm line-clamp-2 leading-relaxed">
-                      {(post as Record<string, string>)[blogExcerptKey] || post.excerptFr}
+                      {getLocalizedField(post, "excerpt", locale) || post.excerptFr}
                     </p>
                     <p className="text-rose-500 text-sm font-medium mt-3">{t("blog.readMore")}</p>
                   </div>

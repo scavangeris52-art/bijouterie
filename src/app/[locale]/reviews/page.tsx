@@ -6,6 +6,7 @@ import Link from "next/link";
 import StarRating from "@/components/ui/StarRating";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
+import { getLocalizedField } from "@/lib/utils";
 import type { Review } from "@/types";
 
 export default function ReviewsPage() {
@@ -40,7 +41,6 @@ export default function ReviewsPage() {
 
   const set = (k: string, v: string | number) => setForm((f) => ({ ...f, [k]: v }));
 
-  const nameKey = `name${locale.charAt(0).toUpperCase() + locale.slice(1)}` as "nameFr" | "nameEn" | "nameAr" | "nameEs";
 
   return (
     <div className="py-16 px-4 max-w-5xl mx-auto">
@@ -61,7 +61,7 @@ export default function ReviewsPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-16">
           {reviews.map((r) => {
-            const productName = r.product ? ((r.product as Record<string, string>)[nameKey] || r.product.nameFr) : null;
+            const productName = r.product ? (getLocalizedField(r.product, "name", locale) || r.product.nameFr) : null;
             const productImage = r.product?.images?.[0]?.url;
             return (
               <div key={r.id} className="bg-white rounded-2xl p-6 shadow-sm border border-rose-50 hover:shadow-luxury transition-shadow">

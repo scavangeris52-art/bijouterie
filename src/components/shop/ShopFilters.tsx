@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { cn, getLocalizedField } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
 interface Category {
@@ -16,8 +16,6 @@ interface ShopFiltersProps {
 export default function ShopFilters({ categories, locale, activeCategory }: ShopFiltersProps) {
   const t      = useTranslations("shop");
   const router = useRouter();
-  const nameKey = `name${locale.charAt(0).toUpperCase() + locale.slice(1)}` as keyof Category;
-
   const set = (slug?: string) => {
     const url = slug ? `/${locale}/shop?category=${slug}` : `/${locale}/shop`;
     router.push(url);
@@ -36,7 +34,7 @@ export default function ShopFilters({ categories, locale, activeCategory }: Shop
           "px-5 py-2 rounded-full text-sm font-medium transition-all duration-200",
           activeCategory === cat.slug ? "bg-gradient-rose text-white shadow-rose-sm" : "bg-white border border-gray-200 text-gray-600 hover:border-rose-300 hover:text-rose-500"
         )}>
-          {(cat as Record<string, string>)[nameKey as string] || cat.nameFr}
+          {getLocalizedField(cat, "name", locale) || cat.nameFr}
         </button>
       ))}
     </div>
