@@ -112,7 +112,7 @@ export default function ReviewsPage() {
               ].map(({ key, label, type }) => (
                 <div key={key}>
                   <label className="block text-sm text-gray-500 mb-1">{label}</label>
-                  <input value={(form as Record<string, string>)[key]} onChange={(e) => set(key, e.target.value)} type={type} required
+                  <input value={(form as Record<string, string | number>)[key] as string} onChange={(e) => set(key, e.target.value)} type={type} required
                     className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-400 transition-colors"
                   />
                 </div>
