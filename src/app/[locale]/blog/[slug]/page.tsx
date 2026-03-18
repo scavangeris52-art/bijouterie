@@ -95,13 +95,13 @@ export default async function BlogPostPage({ params }: { params: { locale: strin
                 className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-rose-50">
                 {r.coverImage && (
                   <div className="relative h-32 overflow-hidden">
-                    <Image src={r.coverImage} alt={(r as Record<string, string>)[titleKey] || r.titleFr} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <Image src={r.coverImage} alt={r[titleKey] || r.titleFr} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                 )}
                 <div className="p-3">
                   <p className="text-xs text-rose-500 mb-1">{new Date(r.createdAt).toLocaleDateString("fr-FR")}</p>
                   <h3 className="text-sm font-medium text-gray-700 line-clamp-2 group-hover:text-rose-500 transition-colors">
-                    {(r as Record<string, string>)[titleKey] || r.titleFr}
+                    {r[titleKey] || r.titleFr}
                   </h3>
                 </div>
               </Link>
