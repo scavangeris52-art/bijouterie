@@ -3,6 +3,11 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import prisma from "./prisma";
 
+// Sur Vercel, utiliser VERCEL_URL si NEXTAUTH_URL n'est pas défini
+if (process.env.VERCEL_URL && !process.env.NEXTAUTH_URL) {
+  process.env.NEXTAUTH_URL = `https://${process.env.VERCEL_URL}`;
+}
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
