@@ -42,12 +42,13 @@ export function truncate(str: string, length: number): string {
   return str.length > length ? str.slice(0, length) + "…" : str;
 }
 
-export function getLocalizedField<T extends Record<string, unknown>>(
-  obj: T,
+export function getLocalizedField(
+  obj: unknown,
   field: string,
   locale: string
 ): string {
+  const record = obj as Record<string, unknown>;
   const localeName = locale.charAt(0).toUpperCase() + locale.slice(1);
-  const key = `${field}${localeName}` as keyof T;
-  return (obj[key] as string) ?? (obj[`${field}Fr` as keyof T] as string) ?? "";
+  const key = `${field}${localeName}`;
+  return (record[key] as string) ?? (record[`${field}Fr`] as string) ?? "";
 }
