@@ -4,11 +4,19 @@ import prisma from "@/lib/prisma";
 const BASE  = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const LOCALES = ["fr", "en", "ar", "es"];
 
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [products, posts] = await Promise.all([
-    prisma.product.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
-    prisma.blogPost.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
-  ]);
+  let products: { slug: string; updatedAt: Date }[] = [];
+  let posts: { slug: string; updatedAt: Date }[] = [];
+  try {
+    [products, posts] = await Promise.all([
+      prisma.product.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
+      prisma.blogPost.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
+    ]);
+  } catch {
+    // DB not available at build time
+  }
 
   const staticPages = ["", "/shop", "/blog", "/about", "/contact", "/reviews"];
 

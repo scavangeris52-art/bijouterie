@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -10,11 +10,9 @@ import HtmlLangSetter from "@/components/layout/HtmlLangSetter";
 import { Toaster } from "react-hot-toast";
 import type { Metadata } from "next";
 
-const locales = ["fr", "en", "ar", "es"];
+export const dynamic = "force-dynamic";
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
+const locales = ["fr", "en", "ar", "es"];
 
 export async function generateMetadata({
   params: { locale },
@@ -33,6 +31,7 @@ export default async function LocaleLayout({
 }) {
   if (!locales.includes(locale)) notFound();
 
+  setRequestLocale(locale);
   const messages = await getMessages();
 
   return (
