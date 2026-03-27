@@ -1,8 +1,12 @@
 export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { requireAuth } from "@/lib/auth-middleware";
 
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+  const authError = await requireAuth(req);
+  if (authError) return authError;
+
   try {
     const { status } = await req.json();
     const review = await prisma.review.update({
@@ -15,7 +19,10 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   }
 }
 
-export async function DELETE(_: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+  const authError = await requireAuth(req);
+  if (authError) return authError;
+
   try {
     await prisma.review.delete({ where: { id: params.id } });
     return NextResponse.json({ message: "Deleted" });

@@ -1,6 +1,8 @@
 export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { requireAuth } from "@/lib/auth-middleware";
+import { sendOrderConfirmationEmail } from "@/lib/email";
 import { generateOrderNumber } from "@/lib/utils";
 import { z } from "zod";
 
@@ -79,6 +81,21 @@ export async function POST(req: NextRequest) {
       },
       include: { items: { include: { product: true } } },
     });
+
+    // Send confirmation email
+    const locale = req.headers.get("x-locale") || "fr";
+    await sendOrderConfirmationEmail(
+      parsed.customerEmail,
+      parsed.customerName.split(" ")[0], // firstName
+      order.orderNumber,
+      order.items.map((item) => ({
+        name: item.product.nameFr,
+        quantity: item.quantity,
+        price: Number(item.price),
+      })),
+      Number(order.total),
+      locale
+    );
 
     return NextResponse.json({ data: order }, { status: 201 });
   } catch (e) {

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e91e63;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef6c57;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <circle cx="50" cy="50" r="48" fill="url(#gradient)"/>
+  <!-- Diamond shape -->
+  <path d="M 50 20 L 70 50 L 50 80 L 30 50 Z" fill="white" stroke="white" stroke-width="2"/>
+  <!-- Inner shine -->
+  <path d="M 50 30 L 60 50 L 50 70 L 40 50 Z" fill="#f5f5f5" opacity="0.5"/>
+</svg>

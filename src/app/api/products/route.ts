@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { requireAuth } from "@/lib/auth-middleware";
 import { z } from "zod";
 
 const productSchema = z.object({
@@ -65,6 +66,10 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  // Check authentication for admin-only endpoint
+  const authError = await requireAuth(req);
+  if (authError) return authError;
+
   try {
     const body   = await req.json();
     const parsed = productSchema.parse(body);

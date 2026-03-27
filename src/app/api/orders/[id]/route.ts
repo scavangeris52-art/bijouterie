@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { requireAuth } from "@/lib/auth-middleware";
 
 export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
   try {
@@ -16,6 +17,9 @@ export async function GET(_: NextRequest, { params }: { params: { id: string } }
 }
 
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+  const authError = await requireAuth(req);
+  if (authError) return authError;
+
   try {
     const { status } = await req.json();
     const order = await prisma.order.update({
