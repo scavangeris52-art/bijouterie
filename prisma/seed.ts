@@ -361,8 +361,8 @@ async function main() {
       productId: products_db[0]?.id,
     },
     {
-      rating: 5,
-      comment: "Service impeccable, bijoux de qualité exceptionnelle. Je recommande vivement cette bijouterie. الجودة ممتازة !",
+      rating: 4,
+      comment: "Très beau bijou, qualité au rendez-vous. Je recommande cette bijouterie.",
       authorName: "Fatima Z.",
       authorEmail: "fatima@example.com",
       status: "APPROVED" as const,
